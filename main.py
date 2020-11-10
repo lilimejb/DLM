@@ -36,6 +36,7 @@ class MainWin(QMainWindow):
         # подключение базы данных
         self.database = Database('orders.db')
 
+        # инициализация переменных для удобства
         self.rest = None
         self.category = None
         self.name = None
@@ -59,33 +60,42 @@ class MainWin(QMainWindow):
         self.make_order_button.clicked.connect(self.set_order)
         self.oreder_view.clicked.connect(self.set_order_view)
 
+        # функции для регестрации
         self.reg_button.clicked.connect(self.register)
         self.show_person_info()
 
+        # ComboBox для выбора ресторана и категории блюда
         self.rest_choose.currentTextChanged.connect(self.rest_chosen)
         self.category_choose.currentTextChanged.connect(self.category_chosen)
 
+        # кнопки для выбора блюда
         self.position_1_pick.clicked.connect(self.pick)
         self.position_2_pick.clicked.connect(self.pick)
         self.position_3_pick.clicked.connect(self.pick)
         self.position_4_pick.clicked.connect(self.pick)
         self.position_5_pick.clicked.connect(self.pick)
 
+        # кнопка для старта Progress bar
         self.make_order.clicked.connect(self.cook_order)
 
+    # функция для перехода на главное окно
     def set_main(self):
         self.stack.setCurrentIndex(0)
         self.update()
 
+    # функция для перехода на окно регестрации
     def set_reg(self):
         self.stack.setCurrentIndex(1)
 
+    # функция для перехода на окно оформления заказа
     def set_order(self):
         self.stack.setCurrentIndex(2)
 
+    # функция для перехода на окно просмотра заказов
     def set_order_view(self):
         self.stack.setCurrentIndex(3)
 
+    # функция для регестрации пользователя
     def register(self):
         self.name, ok_pressed_name = QInputDialog.getText(self, 'Окно ввода', 'Введите имя')
         if ok_pressed_name:
@@ -94,6 +104,7 @@ class MainWin(QMainWindow):
                 self.database.add_person(Person([0, self.name, self.surname]))
                 self.show_person_info()
 
+    # функция для показа информации о пользователе
     def show_person_info(self):
         db = QSqlDatabase.addDatabase('QSQLITE')
         db.setDatabaseName('orders.db')
@@ -103,16 +114,19 @@ class MainWin(QMainWindow):
         model.select()
         self.person_info.setModel(model)
 
+    # функция выбора ресторана
     def rest_chosen(self):
         sender = self.sender().currentText()
         self.rest = sender
         self.dish_show()
 
+    # функция выбора категории блюда
     def category_chosen(self):
         sender = self.sender().currentText()
         self.category = sender
         self.dish_show()
 
+    # функция выбора блюда
     def pick(self):
         sender = self.sender().text()
         if sender == '':
@@ -120,6 +134,7 @@ class MainWin(QMainWindow):
         else:
             self.make_order_func(sender)
 
+    # функция запуска Progress bar
     def cook_order(self):
         self.bar.start()
         for _ in range(10):
@@ -128,6 +143,7 @@ class MainWin(QMainWindow):
         self.ready.show()
         self.go_home_2.setEnabled(True)
 
+    # функция выбора ресторана
     def make_order_func(self, dish):
         self.check_text += f'{dish} \n'
         self.check.setText(self.check_text)
@@ -136,6 +152,7 @@ class MainWin(QMainWindow):
         self.bill.setText(f'{self.bill_text}{self.bill_count}р')
         self.add_order(dish)
 
+    # функция добавления заказа
     def add_order(self, dish):
         restaurant_id = self.database.get_restaurant(self.rest, True)[0]
         person_id = self.database.get_person(self.name, True)[0]
@@ -143,12 +160,14 @@ class MainWin(QMainWindow):
         self.database.add_order(order)
         self.add_relation(order, dish)
 
+    # функция "связки" заказа и блюда
     def add_relation(self, order, dish):
         order_id = self.database.get_order(order.person_id, True)[0]
         dish_id = self.database.get_dish(dish, True)[0]
         relation = Relation([order_id, dish_id, self.amount])
         self.database.add_relation(relation)
 
+    # функция отчистки всех переменных
     def update(self):
         self.check_text = ''
         self.bill_text = 'Сумма к оплате:\n'
@@ -156,6 +175,7 @@ class MainWin(QMainWindow):
         self.bill.setText('')
         self.check.setText('')
 
+    # функция показа блюд
     def dish_show(self):
         if self.rest == 'McDonald`s' and self.category == 'Бургер':
             self.position_1_pick.setText('Гамбургер')

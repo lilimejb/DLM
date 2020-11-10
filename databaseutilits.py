@@ -1,6 +1,7 @@
 import sqlite3
 
 
+# класс для удобства работы с БД
 class Database:
     def __init__(self, name):
         self.connection = sqlite3.connect(name)
@@ -30,6 +31,12 @@ class Database:
                         VALUES(?, ?, ?)""", relation.get_list())
         self.connection.commit()
 
+    def get_relation(self, order_id, dish_id):
+        values = self.cursor.execute(f'''SELECT * FROM Relations 
+                                        WHERE order_id = "{order_id} and dish_id = "{dish_id}""''').fetchall()
+        it = Relation(*values)
+        return it.get_list()
+
     def get_order(self, person_id, with_id=False):
         values = self.cursor.execute(f'''SELECT * FROM Orders WHERE person_id = "{person_id}"''').fetchall()
         it = Order(*values)
@@ -51,6 +58,7 @@ class Database:
         return it.get_list(with_id)
 
 
+# класс для удобства работы с блюдами
 class Dish:
     def __init__(self, values):
         self.id = values[0]
@@ -77,6 +85,7 @@ class Dish:
             return [self.name, self.category, self.price]
 
 
+# класс для удобства работы с людьми
 class Person:
     def __init__(self, values):
         self.id = values[0]
@@ -99,6 +108,7 @@ class Person:
             return [self.name, self.surname]
 
 
+# класс для удобства работы с ресторанами
 class Restaurant:
     def __init__(self, values):
         self.id = values[0]
@@ -117,6 +127,7 @@ class Restaurant:
             return [self.name]
 
 
+# класс для удобства работы с заказами
 class Order:
     def __init__(self, values):
         self.id = values[0]
@@ -139,6 +150,7 @@ class Order:
             return [self.restaurant_id, self.person_id]
 
 
+# класс для удобства работы с "связками"
 class Relation:
     def __init__(self, values):
         self.order_id = values[0]
