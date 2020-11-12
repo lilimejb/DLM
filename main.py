@@ -1,8 +1,6 @@
 import sys
-import time
 
 from PyQt5 import uic
-from PyQt5.QtCore import QThread
 from PyQt5.QtWidgets import QApplication, QMainWindow, QInputDialog
 from PyQt5.QtSql import *
 
@@ -57,28 +55,6 @@ STYLE2 = """*{
 """
 
 
-class Bar(QThread):
-    def __init__(self, parent):
-        QThread.__init__(self, parent=parent)
-        self.parent = parent
-
-    def run(self):
-        cooking_time = 0
-        percent = 10 / 100
-        self.parent.cooking = True
-        while cooking_time < 10:
-            cooking_time += 1
-            self.parent.cooking_proc.setValue(int(cooking_time / percent))
-            time.sleep(1)
-
-    def stop(self):
-        sys.exit()
-
-
-class Registration_Error(TypeError):
-    pass
-
-
 class MainWin(QMainWindow):
     def __init__(self):
         super().__init__()
@@ -93,13 +69,13 @@ class MainWin(QMainWindow):
         self.category = None
         self.name = None
         self.surname = None
-        self.order_id = 0
+        self.order_id = 1
         self.order_id_current = None
         self.new_order_flag = True
         self.check_text = ''
         self.bill_text = 'Сумма к оплате:\n'
         self.bill_count = 0
-        self.amount = 1
+        self.help_text.hide()
 
         # self.bar = Bar(self)
         # self.ready.hide()
@@ -137,9 +113,23 @@ class MainWin(QMainWindow):
 
         # подключение смены темы
         self.green.triggered.connect(self.change_theme)
-        self.blue.triggered.connect(self.change_theme)
+        self.cream.triggered.connect(self.change_theme)
 
+        # функция создания заказа
         self.create_order.clicked.connect(self.new_order)
+
+        self.user_choose.currentTextChanged.connect(self.show_result)
+        # функция для вызова справки
+        self.help_button.clicked.connect(self.help_show)
+
+    # функция справки
+    def help_show(self):
+        if self.sender().text().endswith('⯈'):
+            self.help_text.show()
+            self.help_button.setText('Справка ⯅')
+        else:
+            self.help_button.setText('Справка ⯈')
+            self.help_text.hide()
 
     # функция для перехода на главное окно
     def set_main(self):
@@ -161,11 +151,12 @@ class MainWin(QMainWindow):
     # функция для регестрации пользователя
     def registration(self):
         self.name, ok_pressed_name = QInputDialog.getText(self, 'Окно регистрации', 'Введите имя')
-        if ok_pressed_name:
+        if ok_pressed_name and self.name != '':
             self.surname, ok_pressed_surname = QInputDialog.getText(self, 'Окно ввода', 'Введите фамилию')
-            if ok_pressed_name and ok_pressed_surname:
+            if ok_pressed_surname and self.surname != '':
                 self.database.add_person(Person([0, self.name, self.surname]))
                 self.show_person_info()
+                self.user_choose.addItem(f'{self.name} {self.surname}')
 
     # функция для показа информации о пользователе
     def show_person_info(self):
@@ -208,8 +199,6 @@ class MainWin(QMainWindow):
 
     # функция выбора ресторана
     def make_order_func(self, dish, amount):
-        # current_amount = self.check.text().find(dish)
-        # print(current_amount)
         if dish in self.check_text or amount == '0':
             pass
         else:
@@ -227,18 +216,37 @@ class MainWin(QMainWindow):
 
     # функция добавления заказа
     def add_order(self, dish, amount):
-        restaurant_id = self.database.get_restaurant(self.rest, True)[0]
-        person_id = self.database.get_person(self.name, True)[0]
+        restaurant_id = self.database.get_restaurant_id(self.rest)
+        person_id = self.database.get_person(self.name, self.surname, True)[0]
         order = Order([self.order_id_current, restaurant_id, person_id])
         self.database.add_order(order)
         self.add_relation(dish, amount)
 
     # функция "связки" заказа и блюда
     def add_relation(self, dish, amount):
-        # order_id = self.database.get_order(order.person_id, True)[0]
         dish_id = self.database.get_dish(dish, True)[0]
         relation = Relation([self.order_id_current, dish_id, amount])
         self.database.add_relation(relation)
+
+    def show_result(self):
+        total = 0
+        name, surname = self.sender().currentText().split()
+        person_id = self.database.get_person(name, surname, True)[0]
+        order_id = self.database.get_order(person_id, True)[0]
+        restaurant_id = self.database.get_order(person_id, True)[1]
+        dishes = self.database.get_relation(order_id)
+        restaurant = self.database.get_restaurant_name(restaurant_id)
+        info_text = f'                 Заказ номер {order_id}\n ' \
+                    f'----------Заказчик-{person_id}---{name}-{surname}--------\n'
+        info_text += f'{restaurant}: \n'
+        for elem in dishes:
+            dish_id, amount = elem
+            dish = self.database.get_dish_name(dish_id)
+            price = self.database.get_dish(dish)[2]
+            info_text += f'{dish} x{amount} ={price * amount} \n'
+            total += price * amount
+        info_text += f'\n \nИтог = {total}'
+        self.info_view.setText(info_text)
 
     # смена темы
     def change_theme(self):
@@ -258,15 +266,19 @@ class MainWin(QMainWindow):
             self.position_3_pick.setStyleSheet(STYLE1)
             self.position_4_pick.setStyleSheet(STYLE1)
             self.position_5_pick.setStyleSheet(STYLE1)
-            self.make_order.setStyleSheet(STYLE1)
             self.clean_list.setStyleSheet(STYLE1)
             self.position_1_amount.setStyleSheet(STYLE1)
             self.position_2_amount.setStyleSheet(STYLE1)
             self.position_3_amount.setStyleSheet(STYLE1)
             self.position_4_amount.setStyleSheet(STYLE1)
             self.position_5_amount.setStyleSheet(STYLE1)
+            self.create_order.setStyleSheet(STYLE1)
+            self.user_choose.setStyleSheet(STYLE1)
+            self.info_view.setStyleSheet(STYLE1)
+            self.help_button.setStyleSheet(STYLE1)
+            self.help_text.setStyleSheet(STYLE1)
             self.setStyleSheet(BACKGROUND_STYLE1)
-        elif sender == 'Синяя':
+        elif sender == 'Кремовая':
             self.go_home_1.setStyleSheet(STYLE2)
             self.go_home_3.setStyleSheet(STYLE2)
             self.go_home_2.setStyleSheet(STYLE2)
@@ -281,13 +293,17 @@ class MainWin(QMainWindow):
             self.position_3_pick.setStyleSheet(STYLE2)
             self.position_4_pick.setStyleSheet(STYLE2)
             self.position_5_pick.setStyleSheet(STYLE2)
-            self.make_order.setStyleSheet(STYLE2)
             self.clean_list.setStyleSheet(STYLE2)
             self.position_1_amount.setStyleSheet(STYLE2)
             self.position_2_amount.setStyleSheet(STYLE2)
             self.position_3_amount.setStyleSheet(STYLE2)
             self.position_4_amount.setStyleSheet(STYLE2)
             self.position_5_amount.setStyleSheet(STYLE2)
+            self.create_order.setStyleSheet(STYLE2)
+            self.user_choose.setStyleSheet(STYLE2)
+            self.info_view.setStyleSheet(STYLE2)
+            self.help_button.setStyleSheet(STYLE2)
+            self.help_text.setStyleSheet(STYLE2)
             self.setStyleSheet(BACKGROUND_STYLE2)
 
     # функция отчистки всех переменных
@@ -298,10 +314,11 @@ class MainWin(QMainWindow):
         self.bill.setText('')
         self.check.setText('')
 
+    # функция создания нового заказа
     def new_order(self):
+        self.new_order_flag = True
         self.order_id += 1
-        self.bill.setText('')
-        self.check.setText('')
+        self.set_main()
 
     # функция показа блюд
     def dish_show(self):
@@ -405,8 +422,11 @@ class MainWin(QMainWindow):
             self.position_4_price.setText('50р')
             self.position_5_price.setText('70р')
 
-    def closeEvent(self, event):
-        self.bar.stop()
+
+class Help_form(QMainWindow):
+    def __init__(self):
+        super().__init__()
+        uic.loadUi('help.ui', self)
 
 
 def except_hook(cls, exception, traceback):

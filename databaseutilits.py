@@ -21,22 +21,15 @@ class Database:
         self.connection.commit()
         return order.get_id()
 
-    def edit_order(self, item):
-        pass
-
-    def delete_order(self, item):
-        pass
-
     def add_relation(self, relation):
         self.cursor.execute(f"""INSERT INTO Relations (order_id, dish_id, amount)
                         VALUES(?, ?, ?)""", relation.get_list())
         self.connection.commit()
 
-    def get_relation(self, order_id, dish_id):
-        values = self.cursor.execute(f'''SELECT * FROM Relations 
-                                        WHERE order_id = "{order_id} and dish_id = "{dish_id}""''').fetchall()
-        it = Relation(*values)
-        return it.get_list()
+    def get_relation(self, order_id):
+        values = self.cursor.execute(f'''SELECT dish_id, amount FROM Relations 
+                                        WHERE order_id = "{order_id}"''').fetchall()
+        return values
 
     def get_order(self, person_id, with_id=False):
         values = self.cursor.execute(f'''SELECT * FROM Orders WHERE person_id = "{person_id}"''').fetchall()
@@ -48,15 +41,26 @@ class Database:
         it = Dish(*values)
         return it.get_list(with_id)
 
-    def get_person(self, name, with_id=False):
-        values = self.cursor.execute(f'''SELECT * FROM Persons WHERE name = "{name}"''').fetchall()
+    def get_dish_name(self, dish_id):
+        values = self.cursor.execute(f'''SELECT * FROM Dishes WHERE id = "{dish_id}"''').fetchall()
+        it = Dish(*values)
+        return it.get_name()
+
+    def get_person(self, name, surname, with_id=False):
+        values = self.cursor.execute(f'''SELECT * FROM Persons
+                                        WHERE name = "{name}" and surname = "{surname}"''').fetchall()
         it = Person(*values)
         return it.get_list(with_id)
 
-    def get_restaurant(self, name, with_id=False):
+    def get_restaurant_id(self, name):
         values = self.cursor.execute(f'''SELECT * FROM Restaurants WHERE name = "{name}"''').fetchall()
         it = Restaurant(*values)
-        return it.get_list(with_id)
+        return it.get_id()
+
+    def get_restaurant_name(self, rest_id):
+        values = self.cursor.execute(f'''SELECT * FROM Restaurants WHERE id = "{rest_id}"''').fetchall()
+        it = Restaurant(*values)
+        return it.get_name()
 
 
 # класс для удобства работы с блюдами

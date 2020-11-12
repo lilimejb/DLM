@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>838</width>
+    <width>847</width>
     <height>615</height>
    </rect>
   </property>
@@ -44,14 +44,14 @@
 </string>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="main_page">
        <widget class="QPushButton" name="oreder_view">
         <property name="geometry">
          <rect>
-          <x>410</x>
-          <y>10</y>
+          <x>0</x>
+          <y>510</y>
           <width>391</width>
           <height>41</height>
          </rect>
@@ -185,13 +185,91 @@
          <string>Регистрация заказчика</string>
         </property>
        </widget>
+       <widget class="QPushButton" name="help_button">
+        <property name="geometry">
+         <rect>
+          <x>420</x>
+          <y>10</y>
+          <width>131</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">#help_button{
+	background:linear-gradient(to bottom, #62c1e0 5%, #019ad2 100%);
+	background-color:#B2FFD6;
+	border-radius:6px;
+	border:1px solid #057fd0;
+	color:#AA78A6;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 6px;
+	text-decoration:none;
+}
+#help_button:hover {
+	background:linear-gradient(to bottom, #019ad2 5%, #62c1e0 100%);
+	background-color:#B4D6D3;
+}
+#help_button:active {
+	position:relative;
+	top:1px;
+}
+</string>
+        </property>
+        <property name="text">
+         <string>Справка ⯈</string>
+        </property>
+       </widget>
+       <widget class="QPlainTextEdit" name="help_text">
+        <property name="geometry">
+         <rect>
+          <x>410</x>
+          <y>50</y>
+          <width>411</width>
+          <height>201</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">#help_text{
+	background:linear-gradient(to bottom, #62c1e0 5%, #019ad2 100%);
+	background-color:#B2FFD6;
+	border-radius:6px;
+	border:1px solid #057fd0;
+	color:#AA78A6;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 6px;
+	text-decoration:none;
+}
+#help_text:hover {
+	background:linear-gradient(to bottom, #019ad2 5%, #62c1e0 100%);
+	background-color:#B4D6D3;
+}
+#help_text:active {
+	position:relative;
+	top:1px;
+}
+</string>
+        </property>
+        <property name="plainText">
+         <string>Это приложение для заказа еды через Колл Центр. 
+Чтобы сделать оформить нужно зарегистрироваться, после нажать на кномку &quot;Оформить заказ&quot;.Выберите ресторан из которого будете заказывать, а после категорию блюда, появиться несколько блюд. После выбора блюд нажмите на кнопку &quot;Собрать заказ&quot;.
+</string>
+        </property>
+       </widget>
       </widget>
       <widget class="QWidget" name="reg_page">
        <layout class="QGridLayout" name="gridLayout_5">
         <item row="0" column="0">
          <layout class="QFormLayout" name="formLayout_2">
           <item row="0" column="1">
-           <widget class="QTableView" name="person_info"/>
+           <widget class="QTableView" name="person_info">
+            <property name="styleSheet">
+             <string notr="true"/>
+            </property>
+           </widget>
           </item>
           <item row="1" column="0">
            <widget class="QPushButton" name="go_home_1">
@@ -1019,24 +1097,87 @@
              <enum>QFormLayout::DontWrapRows</enum>
             </property>
             <item row="0" column="0">
+             <widget class="QLabel" name="Label">
+              <property name="font">
+               <font>
+                <pointsize>12</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>Выберите заказчика</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <widget class="QComboBox" name="user_choose">
+              <property name="styleSheet">
+               <string notr="true">#user_choose{
+	background:linear-gradient(to bottom, #62c1e0 5%, #019ad2 100%);
+	background-color:#B2FFD6;
+	border-radius:6px;
+	border:1px solid #057fd0;
+	color:#AA78A6;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 6px;
+	text-decoration:none;
+}
+#user_choose:hover {
+	background:linear-gradient(to bottom, #019ad2 5%, #62c1e0 100%);
+	background-color:#B4D6D3;
+}
+#user_choose:active {
+	position:relative;
+	top:1px;
+}
+</string>
+              </property>
+              <item>
+               <property name="text">
+                <string/>
+               </property>
+              </item>
+             </widget>
+            </item>
+            <item row="1" column="0">
              <widget class="QLabel" name="label_17">
               <property name="text">
                <string/>
               </property>
              </widget>
             </item>
-            <item row="0" column="1">
-             <widget class="QLabel" name="label_15">
+            <item row="1" column="1">
+             <widget class="QTextBrowser" name="info_view">
               <property name="font">
                <font>
-                <pointsize>14</pointsize>
+                <family>Arial</family>
+                <pointsize>-1</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+                <underline>false</underline>
+                <strikeout>false</strikeout>
                </font>
               </property>
               <property name="styleSheet">
-               <string notr="true"/>
-              </property>
-              <property name="text">
-               <string>Все заказы:</string>
+               <string notr="true">#info_view{
+	background:linear-gradient(to bottom, #62c1e0 5%, #019ad2 100%);
+	background-color:#B2FFD6;
+	border-radius:6px;
+	border:1px solid #057fd0;
+	color:#AA78A6;
+	font-family:Arial;
+	font-size:26px;
+	font-weight:bold;
+	padding:6px 6px;
+	text-decoration:none;
+}
+
+#info_view:active {
+	position:relative;
+	top:1px;
+}
+</string>
               </property>
              </widget>
             </item>
@@ -1080,13 +1221,6 @@
               </property>
              </widget>
             </item>
-            <item row="1" column="1">
-             <widget class="QTableView" name="tableView">
-              <property name="styleSheet">
-               <string notr="true"/>
-              </property>
-             </widget>
-            </item>
            </layout>
           </item>
          </layout>
@@ -1102,7 +1236,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>838</width>
+     <width>847</width>
      <height>27</height>
     </rect>
    </property>
@@ -1127,17 +1261,11 @@
       <string>Тема</string>
      </property>
      <addaction name="green"/>
-     <addaction name="blue"/>
+     <addaction name="cream"/>
     </widget>
     <addaction name="theme"/>
    </widget>
-   <widget class="QMenu" name="menu_2">
-    <property name="title">
-     <string>Справка 📓</string>
-    </property>
-   </widget>
    <addaction name="menu"/>
-   <addaction name="menu_2"/>
   </widget>
   <action name="help">
    <property name="text">
@@ -1151,16 +1279,32 @@
    <property name="shortcut">
     <string>Ctrl+Q</string>
    </property>
+   <property name="shortcutVisibleInContextMenu">
+    <bool>false</bool>
+   </property>
    <property name="priority">
     <enum>QAction::NormalPriority</enum>
    </property>
   </action>
-  <action name="blue">
+  <action name="cream">
    <property name="text">
-    <string>Синяя</string>
+    <string>Кремовая</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+E</string>
+   </property>
+   <property name="shortcutVisibleInContextMenu">
+    <bool>false</bool>
+   </property>
+  </action>
+  <action name="show_help_2">
+   <property name="text">
+    <string>Открыть</string>
+   </property>
+  </action>
+  <action name="action">
+   <property name="text">
+    <string>Справка📓</string>
    </property>
   </action>
  </widget>
