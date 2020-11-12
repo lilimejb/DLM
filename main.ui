@@ -6,89 +6,185 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>930</width>
-    <height>648</height>
+    <width>838</width>
+    <height>615</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: #D7FDF0;</string>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
-    <item row="0" column="0">
+    <item row="2" column="0">
      <widget class="QStackedWidget" name="stack">
+      <property name="styleSheet">
+       <string>#reg_button{
+	background:linear-gradient(to bottom, #62c1e0 5%, #019ad2 100%);
+	background-color:#B2FFD6;
+	border-radius:6px;
+	border:1px solid #057fd0;
+	color:#AA78A6;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 6px;
+	text-decoration:none;
+}
+#reg_button:hover {
+	background:linear-gradient(to bottom, #019ad2 5%, #62c1e0 100%);
+	background-color:#B4D6D3;
+}
+#reg_button:active {
+	position:relative;
+	top:1px;
+}
+</string>
+      </property>
       <property name="currentIndex">
        <number>2</number>
       </property>
       <widget class="QWidget" name="main_page">
-       <layout class="QGridLayout" name="gridLayout_4">
-        <item row="0" column="0">
-         <layout class="QGridLayout" name="gridLayout_3">
-          <item row="1" column="0">
-           <layout class="QFormLayout" name="formLayout">
-            <item row="1" column="1">
-             <widget class="QPushButton" name="go_to_reg">
-              <property name="font">
-               <font>
-                <pointsize>14</pointsize>
-               </font>
-              </property>
-              <property name="text">
-               <string>Регистрация заказчика</string>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="1">
-             <widget class="QPushButton" name="make_order_button">
-              <property name="font">
-               <font>
-                <pointsize>14</pointsize>
-               </font>
-              </property>
-              <property name="text">
-               <string>Оформить заказ</string>
-              </property>
-             </widget>
-            </item>
-            <item row="3" column="0">
-             <widget class="QPushButton" name="help_button">
-              <property name="font">
-               <font>
-                <pointsize>10</pointsize>
-               </font>
-              </property>
-              <property name="text">
-               <string>Справка по странице</string>
-              </property>
-             </widget>
-            </item>
-            <item row="3" column="1">
-             <widget class="QPushButton" name="oreder_view">
-              <property name="font">
-               <font>
-                <pointsize>14</pointsize>
-               </font>
-              </property>
-              <property name="text">
-               <string>Посмотреть заказы</string>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="1">
-             <widget class="QLabel" name="label">
-              <property name="text">
-               <string/>
-              </property>
-              <property name="pixmap">
-               <pixmap>logo.png</pixmap>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-         </layout>
-        </item>
-       </layout>
+       <widget class="QPushButton" name="oreder_view">
+        <property name="geometry">
+         <rect>
+          <x>410</x>
+          <y>10</y>
+          <width>391</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>-1</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+          <underline>false</underline>
+          <strikeout>false</strikeout>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">#oreder_view{
+	background:linear-gradient(to bottom, #62c1e0 5%, #019ad2 100%);
+	background-color:#B2FFD6;
+	border-radius:6px;
+	border:1px solid #057fd0;
+	color:#AA78A6;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 6px;
+	text-decoration:none;
+}
+#oreder_view:hover {
+	background:linear-gradient(to bottom, #019ad2 5%, #62c1e0 100%);
+	background-color:#B4D6D3;
+}
+#oreder_view:active {
+	position:relative;
+	top:1px;
+}
+</string>
+        </property>
+        <property name="text">
+         <string>Посмотреть заказы</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="make_order_button">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>60</y>
+          <width>401</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>-1</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+          <underline>false</underline>
+          <strikeout>false</strikeout>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">#make_order_button{
+	background:linear-gradient(to bottom, #62c1e0 5%, #019ad2 100%);
+	background-color:#B2FFD6;
+	border-radius:6px;
+	border:1px solid #057fd0;
+	color:#AA78A6;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 6px;
+	text-decoration:none;
+}
+#make_order_button:hover {
+	background:linear-gradient(to bottom, #019ad2 5%, #62c1e0 100%);
+	background-color:#B4D6D3;
+}
+#make_order_button:active {
+	position:relative;
+	top:1px;
+}
+</string>
+        </property>
+        <property name="text">
+         <string>Оформить заказ</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="go_to_reg">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>10</y>
+          <width>403</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>-1</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+          <underline>false</underline>
+          <strikeout>false</strikeout>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">#go_to_reg{
+	background:linear-gradient(to bottom, #62c1e0 5%, #019ad2 100%);
+	background-color:#B2FFD6;
+	border-radius:6px;
+	border:1px solid #057fd0;
+	color:#AA78A6;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 6px;
+	text-decoration:none;
+}
+#go_to_reg:hover {
+	background:linear-gradient(to bottom, #019ad2 5%, #62c1e0 100%);
+	background-color:#B4D6D3;
+}
+#go_to_reg:active {
+	position:relative;
+	top:1px;
+}
+</string>
+        </property>
+        <property name="text">
+         <string>Регистрация заказчика</string>
+        </property>
+       </widget>
       </widget>
       <widget class="QWidget" name="reg_page">
        <layout class="QGridLayout" name="gridLayout_5">
@@ -101,8 +197,36 @@
            <widget class="QPushButton" name="go_home_1">
             <property name="font">
              <font>
-              <pointsize>10</pointsize>
+              <family>Arial</family>
+              <pointsize>-1</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
+              <underline>false</underline>
+              <strikeout>false</strikeout>
              </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">#go_home_1{
+	background:linear-gradient(to bottom, #62c1e0 5%, #019ad2 100%);
+	background-color:#B2FFD6;
+	border-radius:6px;
+	border:1px solid #057fd0;
+	color:#AA78A6;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 6px;
+	text-decoration:none;
+}
+#go_home_1:hover {
+	background:linear-gradient(to bottom, #019ad2 5%, #62c1e0 100%);
+	background-color:#B4D6D3;
+}
+#go_home_1:active {
+	position:relative;
+	top:1px;
+}
+</string>
             </property>
             <property name="text">
              <string>На главную</string>
@@ -113,8 +237,36 @@
            <widget class="QPushButton" name="reg_button">
             <property name="font">
              <font>
-              <pointsize>14</pointsize>
+              <family>Arial</family>
+              <pointsize>-1</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
+              <underline>false</underline>
+              <strikeout>false</strikeout>
              </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">#reg_button{
+	background:linear-gradient(to bottom, #62c1e0 5%, #019ad2 100%);
+	background-color:#B2FFD6;
+	border-radius:6px;
+	border:1px solid #057fd0;
+	color:#AA78A6;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 6px;
+	text-decoration:none;
+}
+#reg_button:hover {
+	background:linear-gradient(to bottom, #019ad2 5%, #62c1e0 100%);
+	background-color:#B4D6D3;
+}
+#reg_button:active {
+	position:relative;
+	top:1px;
+}
+</string>
             </property>
             <property name="text">
              <string>Пройти регестрацию</string>
@@ -138,8 +290,36 @@
              <widget class="QComboBox" name="rest_choose">
               <property name="font">
                <font>
-                <pointsize>14</pointsize>
+                <family>Arial</family>
+                <pointsize>-1</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+                <underline>false</underline>
+                <strikeout>false</strikeout>
                </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">#rest_choose{
+	background:linear-gradient(to bottom, #62c1e0 5%, #019ad2 100%);
+	background-color:#B2FFD6;
+	border-radius:6px;
+	border:1px solid #057fd0;
+	color:#AA78A6;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 6px;
+	text-decoration:none;
+}
+#rest_choose:hover {
+	background:linear-gradient(to bottom, #019ad2 5%, #62c1e0 100%);
+	background-color:#B4D6D3;
+}
+#rest_choose:active {
+	position:relative;
+	top:1px;
+}
+</string>
               </property>
               <item>
                <property name="text">
@@ -167,6 +347,7 @@
              <widget class="QLabel" name="label_3">
               <property name="font">
                <font>
+                <family>Calibri</family>
                 <pointsize>14</pointsize>
                </font>
               </property>
@@ -179,8 +360,36 @@
              <widget class="QComboBox" name="category_choose">
               <property name="font">
                <font>
-                <pointsize>14</pointsize>
+                <family>Arial</family>
+                <pointsize>-1</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+                <underline>false</underline>
+                <strikeout>false</strikeout>
                </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">#category_choose{
+	background:linear-gradient(to bottom, #62c1e0 5%, #019ad2 100%);
+	background-color:#B2FFD6;
+	border-radius:6px;
+	border:1px solid #057fd0;
+	color:#AA78A6;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 6px;
+	text-decoration:none;
+}
+#category_choose:hover {
+	background:linear-gradient(to bottom, #019ad2 5%, #62c1e0 100%);
+	background-color:#B4D6D3;
+}
+#category_choose:active {
+	position:relative;
+	top:1px;
+}
+</string>
               </property>
               <item>
                <property name="text">
@@ -208,11 +417,42 @@
              <widget class="QLabel" name="label_4">
               <property name="font">
                <font>
+                <family>Calibri</family>
                 <pointsize>14</pointsize>
                </font>
               </property>
               <property name="text">
                <string>Выбор категории блюда</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="0">
+             <widget class="QPushButton" name="clean_list">
+              <property name="styleSheet">
+               <string notr="true">#clean_list{
+	background:linear-gradient(to bottom, #62c1e0 5%, #019ad2 100%);
+	background-color:#B2FFD6;
+	border-radius:6px;
+	border:1px solid #057fd0;
+	color:#AA78A6;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 6px;
+	text-decoration:none;
+}
+#clean_list:hover {
+	background:linear-gradient(to bottom, #019ad2 5%, #62c1e0 100%);
+	background-color:#B4D6D3;
+}
+#clean_list:active {
+	position:relative;
+	top:1px;
+}
+</string>
+              </property>
+              <property name="text">
+               <string>Отчистить заказ</string>
               </property>
              </widget>
             </item>
@@ -226,8 +466,36 @@
                    <widget class="QPushButton" name="position_1_pick">
                     <property name="font">
                      <font>
-                      <pointsize>14</pointsize>
+                      <family>Arial</family>
+                      <pointsize>-1</pointsize>
+                      <weight>75</weight>
+                      <bold>true</bold>
+                      <underline>false</underline>
+                      <strikeout>false</strikeout>
                      </font>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">#position_1_pick{
+	background:linear-gradient(to bottom, #62c1e0 5%, #019ad2 100%);
+	background-color:#B2FFD6;
+	border-radius:6px;
+	border:1px solid #057fd0;
+	color:#AA78A6;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 6px;
+	text-decoration:none;
+}
+#position_1_pick:hover {
+	background:linear-gradient(to bottom, #019ad2 5%, #62c1e0 100%);
+	background-color:#B4D6D3;
+}
+#position_1_pick:active {
+	position:relative;
+	top:1px;
+}
+</string>
                     </property>
                     <property name="text">
                      <string/>
@@ -238,8 +506,36 @@
                    <widget class="QPushButton" name="position_2_pick">
                     <property name="font">
                      <font>
-                      <pointsize>14</pointsize>
+                      <family>Arial</family>
+                      <pointsize>-1</pointsize>
+                      <weight>75</weight>
+                      <bold>true</bold>
+                      <underline>false</underline>
+                      <strikeout>false</strikeout>
                      </font>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">#position_2_pick{
+	background:linear-gradient(to bottom, #62c1e0 5%, #019ad2 100%);
+	background-color:#B2FFD6;
+	border-radius:6px;
+	border:1px solid #057fd0;
+	color:#AA78A6;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 6px;
+	text-decoration:none;
+}
+#position_2_pick:hover {
+	background:linear-gradient(to bottom, #019ad2 5%, #62c1e0 100%);
+	background-color:#B4D6D3;
+}
+#position_2_pick:active {
+	position:relative;
+	top:1px;
+}
+</string>
                     </property>
                     <property name="text">
                      <string/>
@@ -250,8 +546,36 @@
                    <widget class="QPushButton" name="position_3_pick">
                     <property name="font">
                      <font>
-                      <pointsize>14</pointsize>
+                      <family>Arial</family>
+                      <pointsize>-1</pointsize>
+                      <weight>75</weight>
+                      <bold>true</bold>
+                      <underline>false</underline>
+                      <strikeout>false</strikeout>
                      </font>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">#position_3_pick{
+	background:linear-gradient(to bottom, #62c1e0 5%, #019ad2 100%);
+	background-color:#B2FFD6;
+	border-radius:6px;
+	border:1px solid #057fd0;
+	color:#AA78A6;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 6px;
+	text-decoration:none;
+}
+#position_3_pick:hover {
+	background:linear-gradient(to bottom, #019ad2 5%, #62c1e0 100%);
+	background-color:#B4D6D3;
+}
+#position_3_pick:active {
+	position:relative;
+	top:1px;
+}
+</string>
                     </property>
                     <property name="text">
                      <string/>
@@ -262,8 +586,36 @@
                    <widget class="QPushButton" name="position_4_pick">
                     <property name="font">
                      <font>
-                      <pointsize>14</pointsize>
+                      <family>Arial</family>
+                      <pointsize>-1</pointsize>
+                      <weight>75</weight>
+                      <bold>true</bold>
+                      <underline>false</underline>
+                      <strikeout>false</strikeout>
                      </font>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">#position_4_pick{
+	background:linear-gradient(to bottom, #62c1e0 5%, #019ad2 100%);
+	background-color:#B2FFD6;
+	border-radius:6px;
+	border:1px solid #057fd0;
+	color:#AA78A6;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 6px;
+	text-decoration:none;
+}
+#position_4_pick:hover {
+	background:linear-gradient(to bottom, #019ad2 5%, #62c1e0 100%);
+	background-color:#B4D6D3;
+}
+#position_4_pick:active {
+	position:relative;
+	top:1px;
+}
+</string>
                     </property>
                     <property name="text">
                      <string/>
@@ -274,11 +626,174 @@
                    <widget class="QPushButton" name="position_5_pick">
                     <property name="font">
                      <font>
-                      <pointsize>14</pointsize>
+                      <family>Arial</family>
+                      <pointsize>-1</pointsize>
+                      <weight>75</weight>
+                      <bold>true</bold>
+                      <underline>false</underline>
+                      <strikeout>false</strikeout>
                      </font>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">#position_5_pick{
+	background:linear-gradient(to bottom, #62c1e0 5%, #019ad2 100%);
+	background-color:#B2FFD6;
+	border-radius:6px;
+	border:1px solid #057fd0;
+	color:#AA78A6;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 6px;
+	text-decoration:none;
+}
+#position_5_pick:hover {
+	background:linear-gradient(to bottom, #019ad2 5%, #62c1e0 100%);
+	background-color:#B4D6D3;
+}
+#position_5_pick:active {
+	position:relative;
+	top:1px;
+}
+</string>
                     </property>
                     <property name="text">
                      <string/>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <layout class="QVBoxLayout" name="verticalLayout_3">
+                  <item>
+                   <widget class="QSpinBox" name="position_1_amount">
+                    <property name="styleSheet">
+                     <string notr="true">#position_1_amount{
+	background:linear-gradient(to bottom, #62c1e0 5%, #019ad2 100%);
+	background-color:#B2FFD6;
+	border-radius:6px;
+	border:1px solid #057fd0;
+	color:#AA78A6;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 6px;
+	text-decoration:none;
+}
+#position_1_amount:hover {
+	background:linear-gradient(to bottom, #019ad2 5%, #62c1e0 100%);
+	background-color:#B4D6D3;
+}
+#position_1_amount:active {
+	position:relative;
+	top:1px;
+}
+</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QSpinBox" name="position_2_amount">
+                    <property name="styleSheet">
+                     <string notr="true">#position_2_amount{
+	background:linear-gradient(to bottom, #62c1e0 5%, #019ad2 100%);
+	background-color:#B2FFD6;
+	border-radius:6px;
+	border:1px solid #057fd0;
+	color:#AA78A6;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 6px;
+	text-decoration:none;
+}
+#position_2_amount:hover {
+	background:linear-gradient(to bottom, #019ad2 5%, #62c1e0 100%);
+	background-color:#B4D6D3;
+}
+#position_2_amount:active {
+	position:relative;
+	top:1px;
+}</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QSpinBox" name="position_3_amount">
+                    <property name="styleSheet">
+                     <string notr="true">#position_3_amount{
+	background:linear-gradient(to bottom, #62c1e0 5%, #019ad2 100%);
+	background-color:#B2FFD6;
+	border-radius:6px;
+	border:1px solid #057fd0;
+	color:#AA78A6;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 6px;
+	text-decoration:none;
+}
+#position_3_amount:hover {
+	background:linear-gradient(to bottom, #019ad2 5%, #62c1e0 100%);
+	background-color:#B4D6D3;
+}
+#position_3_amount:active {
+	position:relative;
+	top:1px;
+}</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QSpinBox" name="position_4_amount">
+                    <property name="styleSheet">
+                     <string notr="true">#position_4_amount{
+	background:linear-gradient(to bottom, #62c1e0 5%, #019ad2 100%);
+	background-color:#B2FFD6;
+	border-radius:6px;
+	border:1px solid #057fd0;
+	color:#AA78A6;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 6px;
+	text-decoration:none;
+}
+#position_4_amount:hover {
+	background:linear-gradient(to bottom, #019ad2 5%, #62c1e0 100%);
+	background-color:#B4D6D3;
+}
+#position_4_amount:active {
+	position:relative;
+	top:1px;
+}</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QSpinBox" name="position_5_amount">
+                    <property name="styleSheet">
+                     <string notr="true">#position_5_amount{
+	background:linear-gradient(to bottom, #62c1e0 5%, #019ad2 100%);
+	background-color:#B2FFD6;
+	border-radius:6px;
+	border:1px solid #057fd0;
+	color:#AA78A6;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 6px;
+	text-decoration:none;
+}
+#position_5_amount:hover {
+	background:linear-gradient(to bottom, #019ad2 5%, #62c1e0 100%);
+	background-color:#B4D6D3;
+}
+#position_5_amount:active {
+	position:relative;
+	top:1px;
+}</string>
                     </property>
                    </widget>
                   </item>
@@ -352,22 +867,11 @@
               </item>
              </layout>
             </item>
-            <item row="3" column="0">
-             <widget class="QPushButton" name="make_order">
-              <property name="font">
-               <font>
-                <pointsize>10</pointsize>
-               </font>
-              </property>
-              <property name="text">
-               <string>Оформить заказ</string>
-              </property>
-             </widget>
-            </item>
-            <item row="3" column="1">
+            <item row="4" column="1">
              <widget class="QLabel" name="label_6">
               <property name="font">
                <font>
+                <family>Calibri</family>
                 <pointsize>18</pointsize>
                </font>
               </property>
@@ -376,45 +880,18 @@
               </property>
              </widget>
             </item>
-            <item row="4" column="0">
-             <widget class="QLabel" name="ready">
-              <property name="font">
-               <font>
-                <pointsize>12</pointsize>
-               </font>
-              </property>
-              <property name="text">
-               <string>Ваш заказ готов!</string>
-              </property>
-             </widget>
-            </item>
-            <item row="5" column="0">
-             <widget class="QPushButton" name="go_home_2">
-              <property name="font">
-               <font>
-                <pointsize>10</pointsize>
-               </font>
-              </property>
-              <property name="text">
-               <string>На главную</string>
-              </property>
-             </widget>
-            </item>
             <item row="5" column="1">
-             <widget class="QProgressBar" name="cooking_proc">
-              <property name="value">
-               <number>0</number>
-              </property>
-             </widget>
-            </item>
-            <item row="4" column="1">
              <layout class="QHBoxLayout" name="horizontalLayout">
               <item>
                <widget class="QTextBrowser" name="check">
                 <property name="font">
                  <font>
+                  <family>Calibri</family>
                   <pointsize>14</pointsize>
                  </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true"/>
                 </property>
                </widget>
               </item>
@@ -422,12 +899,109 @@
                <widget class="QTextBrowser" name="bill">
                 <property name="font">
                  <font>
+                  <family>Calibri</family>
                   <pointsize>14</pointsize>
                  </font>
                 </property>
                </widget>
               </item>
              </layout>
+            </item>
+            <item row="6" column="0">
+             <widget class="QPushButton" name="go_home_2">
+              <property name="font">
+               <font>
+                <family>Arial</family>
+                <pointsize>-1</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+                <underline>false</underline>
+                <strikeout>false</strikeout>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">#go_home_2{
+	background:linear-gradient(to bottom, #62c1e0 5%, #019ad2 100%);
+	background-color:#B2FFD6;
+	border-radius:6px;
+	border:1px solid #057fd0;
+	color:#AA78A6;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 6px;
+	text-decoration:none;
+}
+#go_home_2:hover {
+	background:linear-gradient(to bottom, #019ad2 5%, #62c1e0 100%);
+	background-color:#B4D6D3;
+}
+#go_home_2:active {
+	position:relative;
+	top:1px;
+}
+</string>
+              </property>
+              <property name="text">
+               <string>На главную</string>
+              </property>
+             </widget>
+            </item>
+            <item row="4" column="0">
+             <widget class="QLabel" name="error_label">
+              <property name="font">
+               <font>
+                <family>Calibri</family>
+                <pointsize>14</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+             </widget>
+            </item>
+            <item row="6" column="1">
+             <widget class="QPushButton" name="create_order">
+              <property name="font">
+               <font>
+                <family>Arial</family>
+                <pointsize>-1</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+                <underline>false</underline>
+                <strikeout>false</strikeout>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">#create_order{
+	background:linear-gradient(to bottom, #62c1e0 5%, #019ad2 100%);
+	background-color:#B2FFD6;
+	border-radius:6px;
+	border:1px solid #057fd0;
+	color:#AA78A6;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 6px;
+	text-decoration:none;
+}
+#create_order:hover {
+	background:linear-gradient(to bottom, #019ad2 5%, #62c1e0 100%);
+	background-color:#B4D6D3;
+}
+#create_order:active {
+	position:relative;
+	top:1px;
+}
+
+
+
+</string>
+              </property>
+              <property name="text">
+               <string>Собрать заказ</string>
+              </property>
+             </widget>
             </item>
            </layout>
           </item>
@@ -458,6 +1032,9 @@
                 <pointsize>14</pointsize>
                </font>
               </property>
+              <property name="styleSheet">
+               <string notr="true"/>
+              </property>
               <property name="text">
                <string>Все заказы:</string>
               </property>
@@ -467,8 +1044,36 @@
              <widget class="QPushButton" name="go_home_3">
               <property name="font">
                <font>
-                <pointsize>10</pointsize>
+                <family>Arial</family>
+                <pointsize>-1</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+                <underline>false</underline>
+                <strikeout>false</strikeout>
                </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">#go_home_3{
+	background:linear-gradient(to bottom, #62c1e0 5%, #019ad2 100%);
+	background-color:#B2FFD6;
+	border-radius:6px;
+	border:1px solid #057fd0;
+	color:#AA78A6;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 6px;
+	text-decoration:none;
+}
+#go_home_3:hover {
+	background:linear-gradient(to bottom, #019ad2 5%, #62c1e0 100%);
+	background-color:#B4D6D3;
+}
+#go_home_3:active {
+	position:relative;
+	top:1px;
+}
+</string>
               </property>
               <property name="text">
                <string>На главную</string>
@@ -476,7 +1081,11 @@
              </widget>
             </item>
             <item row="1" column="1">
-             <widget class="QTableView" name="tableView"/>
+             <widget class="QTableView" name="tableView">
+              <property name="styleSheet">
+               <string notr="true"/>
+              </property>
+             </widget>
             </item>
            </layout>
           </item>
@@ -488,6 +1097,72 @@
     </item>
    </layout>
   </widget>
+  <widget class="QMenuBar" name="settings">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>838</width>
+     <height>27</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">
+#settings:hover {
+	background:linear-gradient(to bottom, #019ad2 5%, #62c1e0 100%);
+	background-color:#B4D6D3;
+}
+#settings:active {
+	position:relative;
+	top:1px;
+}
+</string>
+   </property>
+   <widget class="QMenu" name="menu">
+    <property name="title">
+     <string>⚙</string>
+    </property>
+    <widget class="QMenu" name="theme">
+     <property name="title">
+      <string>Тема</string>
+     </property>
+     <addaction name="green"/>
+     <addaction name="blue"/>
+    </widget>
+    <addaction name="theme"/>
+   </widget>
+   <widget class="QMenu" name="menu_2">
+    <property name="title">
+     <string>Справка 📓</string>
+    </property>
+   </widget>
+   <addaction name="menu"/>
+   <addaction name="menu_2"/>
+  </widget>
+  <action name="help">
+   <property name="text">
+    <string>Справка</string>
+   </property>
+  </action>
+  <action name="green">
+   <property name="text">
+    <string>Зелёная</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Q</string>
+   </property>
+   <property name="priority">
+    <enum>QAction::NormalPriority</enum>
+   </property>
+  </action>
+  <action name="blue">
+   <property name="text">
+    <string>Синяя</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+E</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>

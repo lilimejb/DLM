@@ -16,9 +16,10 @@ class Database:
         self.connection.commit()
 
     def add_order(self, order):
-        self.cursor.execute(f"""INSERT INTO Orders (restaurant_id, person_id)
-                VALUES(?, ?)""", order.get_list())
+        self.cursor.execute(f"""INSERT INTO Orders (id, restaurant_id, person_id)
+                VALUES(?, ?, ?)""", order.get_list(True))
         self.connection.commit()
+        return order.get_id()
 
     def edit_order(self, item):
         pass
