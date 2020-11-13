@@ -59,6 +59,8 @@ class MainWin(QMainWindow):
     def __init__(self):
         super().__init__()
         uic.loadUi('main.ui', self)
+
+        # изменеие окна на начальное
         self.stack.setCurrentIndex(0)
 
         # подключение базы данных
@@ -76,9 +78,6 @@ class MainWin(QMainWindow):
         self.bill_text = 'Сумма к оплате:\n'
         self.bill_count = 0
         self.help_text.hide()
-
-        # self.bar = Bar(self)
-        # self.ready.hide()
 
         # подключение функций
 
@@ -108,9 +107,6 @@ class MainWin(QMainWindow):
         self.position_4_pick.clicked.connect(self.pick)
         self.position_5_pick.clicked.connect(self.pick)
 
-        # кнопка для старта Progress bar
-        # self.make_order.clicked.connect(self.cook_order)
-
         # подключение смены темы
         self.green.triggered.connect(self.change_theme)
         self.cream.triggered.connect(self.change_theme)
@@ -118,7 +114,9 @@ class MainWin(QMainWindow):
         # функция создания заказа
         self.create_order.clicked.connect(self.new_order)
 
+        # функция для выбора пользователя
         self.user_choose.currentTextChanged.connect(self.show_result)
+
         # функция для вызова справки
         self.help_button.clicked.connect(self.help_show)
 
@@ -240,6 +238,7 @@ class MainWin(QMainWindow):
         relation = Relation([self.order_id, dish_id, amount])
         self.database.add_relation(relation)
 
+    # функция вывода заказа пользователя
     def show_result(self):
         total = 0
         name, surname = self.sender().currentText().split()
@@ -447,13 +446,8 @@ class MainWin(QMainWindow):
             self.position_5_price.setText('70р')
 
 
-def except_hook(cls, exception, traceback):
-    sys.__excepthook__(cls, exception, traceback)
-
-
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     ex = MainWin()
     ex.show()
-    sys.excepthook = except_hook
     sys.exit(app.exec_())
