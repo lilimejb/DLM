@@ -69,9 +69,9 @@ class MainWin(QMainWindow):
         self.category = None
         self.name = None
         self.surname = None
-        self.order_id = 1
-        self.order_id_current = None
+        self.order_id = 0
         self.new_order_flag = True
+
         self.check_text = ''
         self.bill_text = 'Сумма к оплате:\n'
         self.bill_count = 0
@@ -147,6 +147,10 @@ class MainWin(QMainWindow):
     # функция для перехода на окно просмотра заказов
     def set_order_view(self):
         self.stack.setCurrentIndex(3)
+        persons = self.database.get_all_persons()
+        for elem in persons:
+            name, surname = elem
+            self.user_choose.addItem(f'{name} {surname}')
 
     # функция для регестрации пользователя
     def registration(self):
@@ -156,7 +160,6 @@ class MainWin(QMainWindow):
             if ok_pressed_surname and self.surname != '':
                 self.database.add_person(Person([0, self.name, self.surname]))
                 self.show_person_info()
-                self.user_choose.addItem(f'{self.name} {self.surname}')
 
     # функция для показа информации о пользователе
     def show_person_info(self):
@@ -196,18 +199,27 @@ class MainWin(QMainWindow):
                 self.make_order_func(sender, self.position_4_amount.text())
             elif sender == self.position_5_pick.text():
                 self.make_order_func(sender, self.position_5_amount.text())
+            self.position_1_amount.setValue(0)
+            self.position_2_amount.setValue(0)
+            self.position_3_amount.setValue(0)
+            self.position_4_amount.setValue(0)
+            self.position_5_amount.setValue(0)
 
     # функция выбора ресторана
     def make_order_func(self, dish, amount):
         if dish in self.check_text or amount == '0':
             pass
         else:
+            self.order_id = self.database.get_order_last_id()
+            if not self.order_id:
+                self.order_id = 1
+            if self.new_order_flag:
+                self.order_id = int(self.order_id) + 1
             self.check_text += f'{dish} x{amount} \n'
             self.check.setText(self.check_text)
             price = self.database.get_dish(dish)[2]
             self.bill_count += price * int(amount)
             self.bill.setText(f'{self.bill_text}{self.bill_count}р')
-            self.order_id_current = self.order_id
             if self.new_order_flag:
                 self.new_order_flag = False
                 self.add_order(dish, amount)
@@ -216,16 +228,16 @@ class MainWin(QMainWindow):
 
     # функция добавления заказа
     def add_order(self, dish, amount):
-        restaurant_id = self.database.get_restaurant_id(self.rest)
-        person_id = self.database.get_person(self.name, self.surname, True)[0]
-        order = Order([self.order_id_current, restaurant_id, person_id])
+        restaurant_id = self.database.get_rest_from_dish(dish)
+        person_id = self.database.get_last_person_id()
+        order = Order([self.order_id, restaurant_id, person_id])
         self.database.add_order(order)
         self.add_relation(dish, amount)
 
     # функция "связки" заказа и блюда
     def add_relation(self, dish, amount):
         dish_id = self.database.get_dish(dish, True)[0]
-        relation = Relation([self.order_id_current, dish_id, amount])
+        relation = Relation([self.order_id, dish_id, amount])
         self.database.add_relation(relation)
 
     def show_result(self):
@@ -318,6 +330,18 @@ class MainWin(QMainWindow):
     def new_order(self):
         self.new_order_flag = True
         self.order_id += 1
+        self.position_1_amount.setValue(0)
+        self.position_2_amount.setValue(0)
+        self.position_3_amount.setValue(0)
+        self.position_4_amount.setValue(0)
+        self.position_5_amount.setValue(0)
+        self.position_1_pick.setText('')
+        self.position_2_pick.setText('')
+        self.position_3_pick.setText('')
+        self.position_4_pick.setText('')
+        self.position_5_pick.setText('')
+        self.rest_choose.setCurrentText('')
+        self.category_choose.setCurrentText('')
         self.set_main()
 
     # функция показа блюд
@@ -421,12 +445,6 @@ class MainWin(QMainWindow):
             self.position_3_price.setText('80р')
             self.position_4_price.setText('50р')
             self.position_5_price.setText('70р')
-
-
-class Help_form(QMainWindow):
-    def __init__(self):
-        super().__init__()
-        uic.loadUi('help.ui', self)
 
 
 def except_hook(cls, exception, traceback):

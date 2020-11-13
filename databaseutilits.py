@@ -32,7 +32,8 @@ class Database:
         return values
 
     def get_order(self, person_id, with_id=False):
-        values = self.cursor.execute(f'''SELECT * FROM Orders WHERE person_id = "{person_id}"''').fetchall()
+        values = self.cursor.execute(f'''SELECT * FROM Orders 
+                                        WHERE person_id = "{person_id}" ORDER BY id DESC LIMIT 1''').fetchall()
         it = Order(*values)
         return it.get_list(with_id)
 
@@ -53,15 +54,38 @@ class Database:
         return it.get_list(with_id)
 
     def get_restaurant_id(self, name):
-        values = self.cursor.execute(f'''SELECT * FROM Restaurants WHERE name = "{name}"''').fetchall()
-        it = Restaurant(*values)
-        return it.get_id()
+        values = self.cursor.execute(f'''SELECT id FROM Restaurants WHERE name = "{name}"''').fetchall()
+        for elem in values:
+            for j in elem:
+                return j
 
     def get_restaurant_name(self, rest_id):
-        values = self.cursor.execute(f'''SELECT * FROM Restaurants WHERE id = "{rest_id}"''').fetchall()
-        it = Restaurant(*values)
-        return it.get_name()
+        values = self.cursor.execute(f'''SELECT name FROM Restaurants WHERE id = "{rest_id}"''').fetchall()
+        for elem in values:
+            for j in elem:
+                return j
 
+    def get_order_last_id(self):
+        values = self.cursor.execute(f'''SELECT id FROM Orders ORDER BY id DESC LIMIT 1''').fetchall()
+        for elem in values:
+            for j in elem:
+                return j
+
+    def get_last_person_id(self):
+        values = self.cursor.execute(f'''SELECT id FROM Persons ORDER BY id DESC LIMIT 1''').fetchall()
+        for elem in values:
+            for j in elem:
+                return j
+
+    def get_all_persons(self):
+        values = self.cursor.execute(f'''SELECT name, surname FROM Persons''').fetchall()
+        return values
+
+    def get_rest_from_dish(self, dish):
+        values = self.cursor.execute(f'''SELECT restaurant FROM Dishes WHERE name = "{dish}"''').fetchall()
+        for elem in values:
+            for j in elem:
+                return j
 
 # класс для удобства работы с блюдами
 class Dish:
