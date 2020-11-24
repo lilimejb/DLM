@@ -145,8 +145,8 @@ class MainWin(QMainWindow):
     # функция для перехода на окно просмотра заказов
     def set_order_view(self):
         self.stack.setCurrentIndex(3)
-        persons = self.database.get_all_persons()
-        for elem in persons:
+        person = self.database.get_last_person_id()
+        for elem in person:
             name, surname = elem
             self.user_choose.addItem(f'{name} {surname}')
 
